@@ -26,30 +26,40 @@ public class UImap {
 		WebElement fname = driver.findElement(uimap.getLocator("Firstname_field"));
 		fname.sendKeys(datafile.getData("firstname"));
 		// System.out.print("Please enter a string: ");
-		String stringInput = System.console().readLine();
-		int stringLength = stringInput.length();
+		//String stringInput = System.console().readLine();
+		int stringLength = ((CharSequence) fname).length();
+		//int stringLength=fname.getText();
 		if (stringLength > 20) {
 			System.out.println("Input string should not exceed 20 characters");
 		}
-
-		Thread.sleep(1000);
+		
+		String regExp = "^[^<>{}\"/|;:.,~!?@#$%^=&*\\]\\\\()\\[0-9_+]*$";
+		//Pattern p = Pattern.compile("[^A-Za-z]");
+		Pattern pattern = Pattern.compile(regExp);
+		Matcher matcher = pattern.matcher((CharSequence) fname);
+		if (matcher.matches()) {
+			System.out.println("First name should not have special characters");}
 		// Get the Last name element
 		WebElement lname = driver.findElement(uimap.getLocator("Lastname_field"));
 		lname.sendKeys(datafile.getData("lastname"));
-		String stringIt = System.console().readLine();
-		int stringLen = stringIt.length();
+		int stringLen = ((CharSequence) lname).length();
 		if (stringLen > 20) {
 			System.out.println("Input string should not exceed 20 characters");
 		}
+		Pattern pattern1 = Pattern.compile(regExp);
+		Matcher matcher1 = pattern1.matcher((CharSequence) lname);
+		if (matcher1.matches()) {
+			System.out.println("Last name should not have special characters");}
+		
 		// verify phone number field
 		String expression = "^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$";
 		WebElement phone = driver.findElement(uimap.getLocator("Phonenumber"));
 		phone.sendKeys(datafile.getData("Phonenumber"));
 		phone.toString();
-		Pattern pattern = Pattern.compile(expression);
-		Matcher matcher = pattern.matcher((CharSequence) phone);
+		Pattern pattern2 = Pattern.compile(expression);
+		Matcher matcher2 = pattern2.matcher((CharSequence) phone);
 		// boolean isValid;
-		if (matcher.matches()) {
+		if (matcher2.matches()) {
 			// isValid = true;
 			System.out.println("Phone Number Valid");
 		} else {

@@ -38,7 +38,11 @@ public class UImap {
 		Pattern pattern = Pattern.compile(regExp);
 		Matcher matcher = pattern.matcher((CharSequence) fname);
 		if (matcher.matches()) {
+			System.out.println("no special characters in firstname");}
+		else{
 			System.out.println("First name should not have special characters");}
+
+		
 		// Get the Last name element
 		WebElement lname = driver.findElement(uimap.getLocator("Lastname_field"));
 		lname.sendKeys(datafile.getData("lastname"));
@@ -49,6 +53,8 @@ public class UImap {
 		Pattern pattern1 = Pattern.compile(regExp);
 		Matcher matcher1 = pattern1.matcher((CharSequence) lname);
 		if (matcher1.matches()) {
+			System.out.println("no special characters in lastname");}
+		else{
 			System.out.println("Last name should not have special characters");}
 		
 		// verify phone number field

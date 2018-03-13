@@ -18,7 +18,13 @@ public class TestLogin {
 		String data = OR.getProperty(ElementName);
 		return data;
 	}
-
+	
+	/**
+	 * 
+	 * @param ElementName
+	 * @return
+	 * @throws Exception
+	 */
 	public By getLocator(String ElementName) throws Exception {
 		// Read value using the logical name as Key
 		String locator = OR.getProperty(ElementName);
